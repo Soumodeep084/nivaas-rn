@@ -51,7 +51,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-stone-50">
       <FlatList
         data={recommended}
         keyExtractor={(item) => item.id}
@@ -86,7 +86,7 @@ export default function HomeScreen() {
                 elevation: 2,
               }}
             >
-              <Ionicons name="search-outline" size={18} color="#9CA3AF" />
+              <Ionicons name="search-outline" size={18} color="#94A3B8" />
               <Text className="text-gray-400 text-sm flex-1">
                 Search properties, cities...
               </Text>
@@ -94,7 +94,7 @@ export default function HomeScreen() {
                 onPress={() =>
                   router.push("/(root)/(tabs)/search?openFilters=true")
                 }
-                className="w-8 h-8 bg-blue-600 rounded-xl items-center justify-center"
+                className="w-8 h-8 bg-emerald-600 rounded-xl items-center justify-center"
               >
                 <Ionicons name="options-outline" size={15} color="white" />
               </TouchableOpacity>
@@ -109,7 +109,7 @@ export default function HomeScreen() {
               {loading ? (
                 <ActivityIndicator
                   size="small"
-                  color="#2563EB"
+                  color="#0F766E"
                   className="py-10"
                 />
               ) : (
@@ -132,7 +132,7 @@ export default function HomeScreen() {
         }
         renderItem={({ item }) => (
           <View className="px-5">
-            <PropertyCard property={item} />
+            <PropertyCard property={item} showSave />
           </View>
         )}
         ListEmptyComponent={

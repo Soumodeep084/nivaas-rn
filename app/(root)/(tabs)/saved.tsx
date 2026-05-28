@@ -62,7 +62,7 @@ export default function SavedScreen() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-stone-50">
       {/* Header */}
       <View className="px-5 pt-4 pb-3">
         <Text className="text-2xl font-bold text-gray-900">Saved</Text>
@@ -76,7 +76,7 @@ export default function SavedScreen() {
 
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#2563EB" />
+          <ActivityIndicator size="large" color="#0F766E" />
         </View>
       ) : (
         <FlatList
@@ -106,7 +106,7 @@ export default function SavedScreen() {
               </Text>
               <TouchableOpacity
                 onPress={() => router.push("/(root)/(tabs)/search")}
-                className="mt-6 bg-blue-600 px-6 py-3 rounded-2xl"
+                className="mt-6 bg-emerald-600 px-6 py-3 rounded-2xl"
               >
                 <Text className="text-white font-semibold">
                   Browse Properties

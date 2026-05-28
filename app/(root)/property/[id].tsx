@@ -4,7 +4,6 @@ import { supabase } from "@/lib/supabase";
 import { formatPrice } from "@/lib/utils";
 import { useUserStore } from "@/store/userStore";
 import { Property } from "@/types";
-import { useAuth } from "@clerk/expo";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
@@ -31,7 +30,6 @@ const ADMIN_PHONE = "919999999999"; // replace with your WhatsApp number
 
 export default function PropertyDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { userId } = useAuth();
   const router = useRouter();
   const isAdmin = useUserStore((state) => state.isAdmin);
 
@@ -104,7 +102,7 @@ export default function PropertyDetailScreen() {
   if (loading) {
     return (
       <View className="flex-1 items-center justify-center bg-white">
-        <ActivityIndicator size="large" color="#2563EB" />
+        <ActivityIndicator size="large" color="#0F766E" />
       </View>
     );
   }
@@ -184,7 +182,7 @@ export default function PropertyDetailScreen() {
                 className="w-10 h-10 bg-white rounded-full items-center justify-center"
                 style={{ elevation: 3 }}
               >
-                <Ionicons name="arrow-back" size={20} color="#111827" />
+                <Ionicons name="arrow-back" size={20} color="#0F172A" />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={toggleSave}
@@ -195,7 +193,7 @@ export default function PropertyDetailScreen() {
                 <Ionicons
                   name={isSaved ? "heart" : "heart-outline"}
                   size={20}
-                  color={isSaved ? "#EF4444" : "#111827"}
+                  color={isSaved ? "#EF4444" : "#0F172A"}
                 />
               </TouchableOpacity>
             </View>
@@ -209,8 +207,8 @@ export default function PropertyDetailScreen() {
         >
           {/* Badges */}
           <View className="flex-row gap-2 mb-3 flex-wrap">
-            <View className="bg-blue-50 px-3 py-1 rounded-full">
-              <Text className="text-blue-600 text-xs font-semibold capitalize">
+            <View className="bg-emerald-50 px-3 py-1 rounded-full">
+              <Text className="text-emerald-600 text-xs font-semibold capitalize">
                 {property.type}
               </Text>
             </View>
@@ -232,7 +230,7 @@ export default function PropertyDetailScreen() {
           <Text className="text-2xl font-bold text-gray-900 mb-1">
             {property.title}
           </Text>
-          <Text className="text-blue-600 text-xl font-bold mb-4">
+          <Text className="text-emerald-600 text-xl font-bold mb-4">
             {formatPrice(property.price)}
           </Text>
 
@@ -265,7 +263,7 @@ export default function PropertyDetailScreen() {
           </Text>
           {isLongDesc && (
             <TouchableOpacity onPress={() => setExpanded(!expanded)}>
-              <Text className="text-blue-600 text-sm font-medium mb-5">
+              <Text className="text-emerald-600 text-sm font-medium mb-5">
                 {expanded ? "Show less" : "Read more"}
               </Text>
             </TouchableOpacity>
@@ -278,7 +276,7 @@ export default function PropertyDetailScreen() {
             Location
           </Text>
           <View className="flex-row items-center gap-2 mb-4">
-            <Ionicons name="location-outline" size={16} color="#6B7280" />
+            <Ionicons name="location-outline" size={16} color="#64748B" />
             <Text className="text-gray-500 text-sm flex-1">
               {property.address}, {property.city}
             </Text>
@@ -308,7 +306,7 @@ export default function PropertyDetailScreen() {
               pointerEvents="none"
             />
             <View className="absolute bottom-3 right-3 bg-white/90 px-3 py-1 rounded-full flex-row items-center gap-1">
-              <Ionicons name="expand-outline" size={12} color="#374151" />
+              <Ionicons name="expand-outline" size={12} color="#475569" />
               <Text className="text-gray-600 text-xs font-medium">
                 Tap to expand
               </Text>
@@ -318,7 +316,7 @@ export default function PropertyDetailScreen() {
           {/* Contact Button */}
           <TouchableOpacity
             onPress={handleContact}
-            className="flex-row items-center justify-center gap-2 bg-blue-600 py-4 rounded-2xl mb-4"
+            className="flex-row items-center justify-center gap-2 bg-emerald-600 py-4 rounded-2xl mb-4"
           >
             <Ionicons name="logo-whatsapp" size={20} color="white" />
             <Text className="text-white font-bold text-base">
@@ -378,7 +376,7 @@ function SpecItem({
 }) {
   return (
     <View className="items-center gap-1">
-      <Ionicons name={icon} size={20} color="#2563EB" />
+      <Ionicons name={icon} size={20} color="#0F766E" />
       <Text className="text-gray-900 font-bold text-sm">{value}</Text>
       <Text className="text-gray-400 text-xs">{label}</Text>
     </View>

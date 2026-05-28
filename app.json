@@ -42,7 +42,7 @@
           "image": "./assets/images/nivaas-logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#FFFFFF",
           "dark": {
             "backgroundColor": "#000000"
           }

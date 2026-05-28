@@ -78,7 +78,7 @@ export default function ProfileScreen() {
   if (!isLoaded || !user) {
     return (
       <SafeAreaView className="flex-1 bg-white items-center justify-center">
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#0F766E" />
       </SafeAreaView>
     );
   }
@@ -95,7 +95,7 @@ export default function ProfileScreen() {
           <TouchableOpacity
             onPress={handleUpdateProfileImage}
             disabled={isUpdating}
-            className="absolute bottom-3 right-0 bg-blue-600 rounded-full p-2"
+            className="absolute bottom-3 right-0 bg-emerald-600 rounded-full p-2"
           >
             {isUpdating ? (
               <ActivityIndicator size="small" color="white" />
@@ -168,7 +168,7 @@ function MenuItem({
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="flex-row items-center gap-4 bg-gray-50 px-4 py-4 rounded-2xl"
+      className="flex-row items-center gap-4 bg-stone-50 px-4 py-4 rounded-2xl"
     >
       <Ionicons name={icon} size={22} color="#6B7280" />
       <Text className="flex-1 text-gray-700 font-medium text-base">

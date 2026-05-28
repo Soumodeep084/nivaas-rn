@@ -35,11 +35,11 @@ const PRICE_PRESETS = [
 
 const chip = (active: boolean) =>
   `px-4 py-2 rounded-full border ${
-    active ? "bg-blue-600 border-blue-600" : "bg-white border-gray-200"
+    active ? "bg-slate-900 border-slate-900" : "bg-slate-100 border-slate-200"
   }`;
 
 const chipText = (active: boolean) =>
-  `text-sm font-semibold ${active ? "text-white" : "text-gray-600"}`;
+  `text-sm font-semibold ${active ? "text-white" : "text-slate-700"}`;
 
 export default function FilterModal({
   visible,
@@ -95,15 +95,18 @@ export default function FilterModal({
       presentationStyle="pageSheet"
       onRequestClose={onClose}
     >
-      <View className="flex-1 bg-gray-50">
+      <View className="flex-1 bg-stone-100">
         {/* Header */}
-        <View className="flex-row items-center justify-between px-5 pt-6 pb-4 bg-white border-b border-gray-100">
-          <TouchableOpacity onPress={onClose} className="p-1">
-            <Ionicons name="close" size={22} color="#374151" />
+        <View className="flex-row items-center justify-between px-5 pt-6 pb-4 bg-white border-b border-slate-100">
+          <TouchableOpacity
+            onPress={onClose}
+            className="w-9 h-9 items-center justify-center rounded-full bg-slate-100"
+          >
+            <Ionicons name="close" size={20} color="#334155" />
           </TouchableOpacity>
-          <Text className="text-lg font-bold text-gray-900">Filters</Text>
+          <Text className="text-lg font-bold text-slate-900">Filters</Text>
           <TouchableOpacity onPress={handleReset}>
-            <Text className="text-blue-600 font-semibold text-sm">Reset</Text>
+            <Text className="text-slate-700 font-semibold text-sm">Reset</Text>
           </TouchableOpacity>
         </View>
 
@@ -113,7 +116,7 @@ export default function FilterModal({
           showsVerticalScrollIndicator={false}
         >
           {/* Property Type */}
-          <Text className="text-base font-bold text-gray-800 mb-3">
+          <Text className="text-base font-bold text-slate-800 mb-3">
             Property Type
           </Text>
           <View className="flex-row flex-wrap gap-2 mb-6">
@@ -132,7 +135,7 @@ export default function FilterModal({
           </View>
 
           {/* Bedrooms */}
-          <Text className="text-base font-bold text-gray-800 mb-3">
+          <Text className="text-base font-bold text-slate-800 mb-3">
             Bedrooms
           </Text>
           <View className="flex-row gap-2 mb-6">
@@ -142,8 +145,8 @@ export default function FilterModal({
                 onPress={() => setBedrooms(item.value)}
                 className={`flex-1 items-center py-3 rounded-2xl border ${
                   bedrooms === item.value
-                    ? "bg-blue-600 border-blue-600"
-                    : "bg-white border-gray-200"
+                    ? "bg-emerald-600 border-emerald-600"
+                    : "bg-white border-slate-200"
                 }`}
                 style={shadow}
               >
@@ -159,7 +162,7 @@ export default function FilterModal({
           </View>
 
           {/* Price Range */}
-          <Text className="text-base font-bold text-gray-800 mb-3">
+          <Text className="text-base font-bold text-slate-800 mb-3">
             Price Range (₹)
           </Text>
           <View className="flex-row gap-3 mb-3">
@@ -178,16 +181,16 @@ export default function FilterModal({
               },
             ].map(({ label, value, onChange, placeholder }) => (
               <View key={label} className="flex-1">
-                <Text className="text-xs text-gray-500 mb-1.5 font-medium">
+                <Text className="text-xs text-slate-500 mb-1.5 font-medium">
                   {label}
                 </Text>
                 <View
-                  className="flex-row items-center bg-white rounded-2xl px-3 border border-gray-200"
+                  className="flex-row items-center bg-white rounded-2xl px-3 border border-slate-200"
                   style={shadow}
                 >
-                  <Text className="text-gray-400 text-sm mr-1">₹</Text>
+                  <Text className="text-slate-400 text-sm mr-1">₹</Text>
                   <TextInput
-                    className="flex-1 py-3 text-gray-800"
+                    className="flex-1 py-3 text-slate-800"
                     placeholder={placeholder}
                     placeholderTextColor="#9CA3AF"
                     keyboardType="numeric"
@@ -214,13 +217,13 @@ export default function FilterModal({
                   }}
                   className={`px-3 py-1.5 rounded-full border ${
                     active
-                      ? "bg-blue-50 border-blue-300"
-                      : "bg-white border-gray-200"
+                      ? "bg-emerald-600 border-emerald-600"
+                      : "bg-slate-100 border-slate-200"
                   }`}
                 >
                   <Text
                     className={`text-xs font-medium ${
-                      active ? "text-blue-600" : "text-gray-500"
+                      active ? "text-white" : "text-slate-700"
                     }`}
                   >
                     {p.label}
@@ -232,12 +235,12 @@ export default function FilterModal({
         </ScrollView>
 
         {/* Apply Button */}
-        <View className="px-5 pb-8 pt-4 bg-white border-t border-gray-100">
+        <View className="px-5 pb-8 pt-4 bg-white border-t border-slate-100">
           <TouchableOpacity
             onPress={handleApply}
-            className="bg-blue-600 rounded-2xl py-4 items-center"
+            className="bg-emerald-600 rounded-2xl py-4 items-center"
             style={{
-              shadowColor: "#2563EB",
+              shadowColor: "#0F766E",
               shadowOffset: { width: 0, height: 4 },
               shadowOpacity: 0.3,
               shadowRadius: 8,

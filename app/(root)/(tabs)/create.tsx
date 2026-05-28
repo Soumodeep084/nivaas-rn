@@ -278,13 +278,13 @@ export default function CreatePropertyScreen() {
     <TouchableOpacity
       onPress={() => onChange(!value)}
       className={`flex-row items-center justify-between p-4 rounded-2xl border ${
-        value ? "bg-blue-50 border-blue-200" : "bg-white border-gray-200"
+        value ? "bg-emerald-50 border-emerald-200" : "bg-white border-gray-200"
       }`}
     >
       <View className="flex-1 mr-3">
         <Text
           className={`font-semibold ${
-            value ? "text-blue-700" : "text-gray-700"
+            value ? "text-emerald-700" : "text-gray-700"
           }`}
         >
           {label}
@@ -295,7 +295,7 @@ export default function CreatePropertyScreen() {
       </View>
       <View
         className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
-          value ? "bg-blue-600 border-blue-600" : "border-gray-300"
+          value ? "bg-emerald-600 border-emerald-600" : "border-gray-300"
         }`}
       >
         {value && <Ionicons name="checkmark" size={14} color="white" />}
@@ -304,7 +304,7 @@ export default function CreatePropertyScreen() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-stone-50">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
@@ -337,7 +337,7 @@ export default function CreatePropertyScreen() {
                     resizeMode="cover"
                   />
                   {index === 0 && (
-                    <View className="absolute top-1 left-1 bg-blue-600 px-1.5 py-0.5 rounded-full">
+                    <View className="absolute top-1 left-1 bg-emerald-600 px-1.5 py-0.5 rounded-full">
                       <Text className="text-white text-[9px] font-bold">
                         COVER
                       </Text>
@@ -359,13 +359,13 @@ export default function CreatePropertyScreen() {
                   className="w-24 h-24 rounded-2xl bg-white border-2 border-dashed border-gray-300 items-center justify-center"
                 >
                   {uploadingImages ? (
-                    <ActivityIndicator size="small" color="#2563EB" />
+                    <ActivityIndicator size="small" color="#0F766E" />
                   ) : (
                     <>
                       <Ionicons
                         name="camera-outline"
                         size={22}
-                        color="#9CA3AF"
+                        color="#94A3B8"
                       />
                       <Text className="text-gray-400 text-xs mt-1">Add</Text>
                     </>
@@ -426,7 +426,7 @@ export default function CreatePropertyScreen() {
                   onPress={() => updateForm({ type: t })}
                   className={`px-4 py-2 rounded-full border ${
                     form.type === t
-                      ? "bg-blue-600 border-blue-600"
+                      ? "bg-emerald-600 border-emerald-600"
                       : "bg-white border-gray-200"
                   }`}
                 >
@@ -498,14 +498,14 @@ export default function CreatePropertyScreen() {
               <TouchableOpacity
                 onPress={handleDetectLocation}
                 disabled={detectingLocation}
-                className="flex-row items-center gap-1 bg-blue-50 px-3 py-1.5 rounded-full"
+                className="flex-row items-center gap-1 bg-emerald-50 px-3 py-1.5 rounded-full"
               >
                 {detectingLocation ? (
-                  <ActivityIndicator size="small" color="#2563EB" />
+                  <ActivityIndicator size="small" color="#0F766E" />
                 ) : (
-                  <Ionicons name="locate-outline" size={13} color="#2563EB" />
+                  <Ionicons name="locate-outline" size={13} color="#0F766E" />
                 )}
-                <Text className="text-blue-600 text-xs font-semibold">
+                <Text className="text-emerald-600 text-xs font-semibold">
                   {detectingLocation ? "Detecting..." : "Detect Location"}
                 </Text>
               </TouchableOpacity>
@@ -549,9 +549,9 @@ export default function CreatePropertyScreen() {
           <TouchableOpacity
             onPress={handleSubmit}
             disabled={submitting || uploadingImages}
-            className="bg-blue-600 rounded-2xl py-4 items-center"
+            className="bg-emerald-600 rounded-2xl py-4 items-center"
             style={{
-              shadowColor: "#2563EB",
+              shadowColor: "#0F766E",
               shadowOffset: { width: 0, height: 4 },
               shadowOpacity: 0.3,
               shadowRadius: 8,

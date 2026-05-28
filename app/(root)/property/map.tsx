@@ -23,14 +23,14 @@ export default function MapScreen() {
   }&layer=mapnik&marker=${lat}%2C${lng}`;
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-stone-50">
       {/* Header */}
       <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-100">
         <TouchableOpacity
           onPress={() => router.back()}
           className="w-9 h-9 items-center justify-center rounded-full bg-gray-100"
         >
-          <Ionicons name="arrow-back" size={20} color="#111827" />
+          <Ionicons name="arrow-back" size={20} color="#0F172A" />
         </TouchableOpacity>
 
         <View className="flex-1 mx-3">
@@ -49,10 +49,10 @@ export default function MapScreen() {
           onPress={() =>
             Linking.openURL(`https://www.google.com/maps?q=${lat},${lng}`)
           }
-          className="flex-row items-center gap-1 bg-blue-50 px-3 py-2 rounded-full"
+          className="flex-row items-center gap-1 bg-emerald-50 px-3 py-2 rounded-full"
         >
-          <Ionicons name="navigate-outline" size={14} color="#2563EB" />
-          <Text className="text-blue-600 text-xs font-semibold">
+          <Ionicons name="navigate-outline" size={14} color="#0F766E" />
+          <Text className="text-emerald-600 text-xs font-semibold">
             Google Maps
           </Text>
         </TouchableOpacity>

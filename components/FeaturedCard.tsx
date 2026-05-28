@@ -29,7 +29,7 @@ export default function FeaturedCard({ property }: { property: Property }) {
 
       {/* Badge */}
       <View className="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full">
-        <Text className="text-xs font-semibold text-blue-600 capitalize">
+        <Text className="text-xs font-semibold text-emerald-700 capitalize">
           {property.type}
         </Text>
       </View>
@@ -57,7 +57,7 @@ export default function FeaturedCard({ property }: { property: Property }) {
         </View>
 
         <View className="flex-row items-center justify-between">
-          <Text className="text-blue-600 font-bold text-base">
+          <Text className="text-emerald-600 font-bold text-base">
             {formatPrice(property.price)}
           </Text>
           <View className="flex-row items-center gap-3">

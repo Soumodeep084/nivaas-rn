@@ -2,13 +2,13 @@ import { useAuth, useSignUp } from "@clerk/expo";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import {
-  ActivityIndicator,
-  Image,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    ActivityIndicator,
+    Image,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 export default function SignUp() {
@@ -66,13 +66,13 @@ export default function SignUp() {
     signUp.missingFields.length === 0
   ) {
     return (
-      <View className="flex-1 justify-center items-center bg-white px-6">
+      <View className="flex-1 justify-center items-center bg-stone-50 px-6">
         <Image
           source={require("../../assets/images/nivaas-logo.png")}
           className="w-32 h-16 mb-8"
           resizeMode="contain"
         />
-        <Text className="text-2xl font-bold text-gray-800 mb-2">
+        <Text className="text-2xl font-bold text-gray-900 mb-2">
           Verify your account
         </Text>
         <Text className="text-gray-500 mb-8 text-center">
@@ -96,7 +96,7 @@ export default function SignUp() {
         <TouchableOpacity
           onPress={onVerifyPress}
           disabled={isLoading}
-          className="w-full bg-blue-600 py-4 rounded-xl items-center mb-4"
+          className="w-full bg-emerald-600 py-4 rounded-xl items-center mb-4"
         >
           {isLoading ? (
             <ActivityIndicator color="white" />
@@ -109,11 +109,11 @@ export default function SignUp() {
           onPress={() => signUp.verifications.sendEmailCode()}
           className="py-2"
         >
-          <Text className="text-blue-600">I need a new code</Text>
+          <Text className="text-emerald-600">I need a new code</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => signUp.reset()} className="py-2">
-          <Text className="text-blue-600">Start over</Text>
+          <Text className="text-emerald-600">Start over</Text>
         </TouchableOpacity>
       </View>
     );
@@ -122,7 +122,7 @@ export default function SignUp() {
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
-      className="bg-white"
+      className="bg-stone-50"
       keyboardShouldPersistTaps="handled"
     >
       <View className="flex-1 justify-center px-6 py-12">
@@ -131,7 +131,7 @@ export default function SignUp() {
           className="w-36 h-36"
           resizeMode="contain"
         />
-        <Text className="text-3xl font-bold text-gray-800 mb-2">
+        <Text className="text-3xl font-bold text-gray-900 mb-2">
           Create account
         </Text>
         <Text className="text-gray-500 mb-8">Find your dream home today</Text>
@@ -187,7 +187,7 @@ export default function SignUp() {
         <TouchableOpacity
           onPress={onSignUpPress}
           disabled={isLoading}
-          className="w-full bg-blue-600 py-4 rounded-xl items-center mb-4"
+          className="w-full bg-emerald-600 py-4 rounded-xl items-center mb-4"
         >
           {isLoading ? (
             <ActivityIndicator color="white" />
@@ -199,7 +199,7 @@ export default function SignUp() {
         <View className="flex-row justify-center">
           <Text className="text-gray-500">Already have an account? </Text>
           <Link href="/sign-in">
-            <Text className="text-blue-600 font-semibold">Sign In</Text>
+            <Text className="text-emerald-600 font-semibold">Sign In</Text>
           </Link>
         </View>
 

@@ -86,7 +86,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-stone-50">
       {/* Header */}
       <View className="px-5 pt-4 pb-3">
         <Text className="text-2xl font-bold text-gray-900 mb-4">
@@ -105,7 +105,7 @@ export default function SearchScreen() {
               elevation: 2,
             }}
           >
-            <Ionicons name="search-outline" size={18} color="#9CA3AF" />
+            <Ionicons name="search-outline" size={18} color="#94A3B8" />
             <TextInput
               className="flex-1 py-3 text-gray-800"
               placeholder="Search by title or city..."
@@ -125,7 +125,7 @@ export default function SearchScreen() {
           <TouchableOpacity
             onPress={() => setShowFilters(true)}
             className={`w-12 h-12 rounded-2xl items-center justify-center ${
-              activeFilterCount > 0 ? "bg-blue-600" : "bg-white"
+              activeFilterCount > 0 ? "bg-emerald-600" : "bg-white"
             }`}
             style={{
               shadowColor: "#000",
@@ -154,31 +154,31 @@ export default function SearchScreen() {
         {activeFilterCount > 0 && (
           <View className="flex-row flex-wrap gap-2 mt-3">
             {type && (
-              <View className="flex-row items-center bg-blue-50 border border-blue-200 rounded-full px-3 py-1 gap-1">
-                <Text className="text-blue-700 text-xs font-semibold capitalize">
+              <View className="flex-row items-center bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 gap-1">
+                <Text className="text-emerald-700 text-xs font-semibold capitalize">
                   {type}
                 </Text>
                 <TouchableOpacity onPress={() => setType(null)}>
-                  <Ionicons name="close" size={12} color="#1D4ED8" />
+                  <Ionicons name="close" size={12} color="#0F766E" />
                 </TouchableOpacity>
               </View>
             )}
             {bedrooms !== null && (
-              <View className="flex-row items-center bg-blue-50 border border-blue-200 rounded-full px-3 py-1 gap-1">
-                <Ionicons name="bed-outline" size={11} color="#1D4ED8" />
-                <Text className="text-blue-700 text-xs font-semibold">
+              <View className="flex-row items-center bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 gap-1">
+                <Ionicons name="bed-outline" size={11} color="#0F766E" />
+                <Text className="text-emerald-700 text-xs font-semibold">
                   {bedrooms === 4
                     ? "4+ beds"
                     : `${bedrooms} bed${bedrooms > 1 ? "s" : ""}`}
                 </Text>
                 <TouchableOpacity onPress={() => setBedrooms(null)}>
-                  <Ionicons name="close" size={12} color="#1D4ED8" />
+                  <Ionicons name="close" size={12} color="#0F766E" />
                 </TouchableOpacity>
               </View>
             )}
             {(minPrice !== null || maxPrice !== null) && (
-              <View className="flex-row items-center bg-blue-50 border border-blue-200 rounded-full px-3 py-1 gap-1">
-                <Text className="text-blue-700 text-xs font-semibold">
+              <View className="flex-row items-center bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 gap-1">
+                <Text className="text-emerald-700 text-xs font-semibold">
                   {minPrice && maxPrice
                     ? `${formatPrice(minPrice)} – ${formatPrice(maxPrice)}`
                     : minPrice
@@ -191,7 +191,7 @@ export default function SearchScreen() {
                     setMaxPrice(null);
                   }}
                 >
-                  <Ionicons name="close" size={12} color="#1D4ED8" />
+                  <Ionicons name="close" size={12} color="#0F766E" />
                 </TouchableOpacity>
               </View>
             )}
@@ -223,7 +223,7 @@ export default function SearchScreen() {
               </Text>
             </View>
           ) : (
-            <ActivityIndicator size="large" color="#2563EB" className="py-20" />
+            <ActivityIndicator size="large" color="#0F766E" className="py-20" />
           )
         }
       />

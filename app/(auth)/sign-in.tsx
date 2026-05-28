@@ -59,7 +59,7 @@ export default function SignIn() {
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
-      className="bg-white"
+      className="bg-stone-50"
       keyboardShouldPersistTaps="handled"
     >
       <View className="flex-1 justify-center px-6 py-12">
@@ -68,7 +68,7 @@ export default function SignIn() {
           className="w-36 h-16 mb-8"
           resizeMode="contain"
         />
-        <Text className="text-3xl font-bold text-gray-800 mb-2">
+        <Text className="text-3xl font-bold text-gray-900 mb-2">
           Welcome back
         </Text>
         <Text className="text-gray-500 mb-8">Sign in to your account</Text>
@@ -105,7 +105,7 @@ export default function SignIn() {
         <TouchableOpacity
           onPress={onSignInPress}
           disabled={isLoading}
-          className="w-full bg-blue-600 py-4 rounded-xl items-center mb-4"
+          className="w-full bg-emerald-600 py-4 rounded-xl items-center mb-4"
         >
           {isLoading ? (
             <ActivityIndicator color="white" />
@@ -117,7 +117,7 @@ export default function SignIn() {
         <View className="flex-row justify-center">
           <Text className="text-gray-500">Don&apos;t have an account? </Text>
           <Link href="/sign-up">
-            <Text className="text-blue-600 font-semibold">Sign Up</Text>
+            <Text className="text-emerald-600 font-semibold">Sign Up</Text>
           </Link>
         </View>
       </View>
