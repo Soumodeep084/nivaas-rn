@@ -7,8 +7,12 @@ import {
   ActivityIndicator,
   Alert,
   Image,
+  KeyboardAvoidingView,
   Linking,
+  Platform,
+  ScrollView,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -19,6 +23,11 @@ export default function ProfileScreen() {
   const { signOut } = useAuth();
   const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   const handleSignOut = async () => {
     try {
@@ -26,6 +35,49 @@ export default function ProfileScreen() {
       router.replace("/sign-in");
     } catch (error) {
       console.error("Error signing out:", error);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (
+      !currentPassword.trim() ||
+      !newPassword.trim() ||
+      !confirmPassword.trim()
+    ) {
+      Alert.alert("Missing fields", "Please fill in all password fields.");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      Alert.alert(
+        "Password mismatch",
+        "New password and confirm password must match.",
+      );
+      return;
+    }
+
+    try {
+      setIsChangingPassword(true);
+
+      await user!.updatePassword({
+        currentPassword,
+        newPassword,
+        signOutOfOtherSessions: true,
+      });
+
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setShowPasswordForm(false);
+      Alert.alert("Success", "Your password has been updated.");
+    } catch (error) {
+      console.error("Error updating password:", error);
+      Alert.alert(
+        "Error",
+        `${error instanceof Error ? error.message : "Failed to update password."}`,
+      );
+    } finally {
+      setIsChangingPassword(false);
     }
   };
 
@@ -85,73 +137,159 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white mb-10">
-      {/* Avatar + Name */}
-      <View className="items-center py-8">
-        <View className="relative">
-          <Image
-            source={{ uri: user.imageUrl }}
-            className="w-24 h-24 rounded-full mb-4"
-          />
-          <TouchableOpacity
-            onPress={handleUpdateProfileImage}
-            disabled={isUpdating}
-            className="absolute bottom-3 right-0 bg-emerald-600 rounded-full p-2"
-          >
-            {isUpdating ? (
-              <ActivityIndicator size="small" color="white" />
-            ) : (
-              <Ionicons name="camera" size={16} color="white" />
-            )}
-          </TouchableOpacity>
-        </View>
-        <Text className="text-xl font-bold text-gray-800">
-          {user.firstName} {user.lastName}
-        </Text>
-        <Text className="text-gray-500 mt-1">
-          {user.emailAddresses[0].emailAddress}
-        </Text>
-      </View>
-
-      {/* Menu Items */}
-      <View className="px-6 gap-2">
-        <MenuItem
-          icon="heart-outline"
-          label="Saved Properties"
-          onPress={() => router.push("/(root)/(tabs)/saved")}
-        />
-        <MenuItem
-          icon="notifications-outline"
-          label="Notifications"
-          onPress={() =>
-            Alert.alert("Coming Soon", "Notifications coming soon!")
-          }
-        />
-        <MenuItem
-          icon="settings-outline"
-          label="Settings"
-          onPress={() => Alert.alert("Coming Soon", "Settings coming soon!")}
-        />
-        <MenuItem
-          icon="help-circle-outline"
-          label="Help & Support"
-          onPress={() =>
-            Linking.openURL(
-              "mailto:piyushagarwalvo@gmail.com?subject=Help%20%26%20Support%20-%20Kribb%20App",
-            )
-          }
-        />
-      </View>
-
-      {/* Sign Out */}
-      <View className="px-6 mt-auto mb-8">
-        <TouchableOpacity
-          onPress={handleSignOut}
-          className="flex-row items-center justify-center gap-2 bg-red-50 py-4 rounded-2xl border border-red-100"
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
+        <ScrollView
+          className="flex-1"
+          contentContainerStyle={{ paddingBottom: 32 }}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
         >
-          <Ionicons name="log-out-outline" size={20} color="#EF4444" />
-          <Text className="text-red-500 font-semibold text-base">Sign Out</Text>
-        </TouchableOpacity>
-      </View>
+          {/* Avatar + Name */}
+          <View className="items-center py-8">
+            <View className="relative">
+              <Image
+                source={{ uri: user.imageUrl }}
+                className="w-24 h-24 rounded-full mb-4"
+              />
+              <TouchableOpacity
+                onPress={handleUpdateProfileImage}
+                disabled={isUpdating}
+                className="absolute bottom-3 right-0 bg-emerald-600 rounded-full p-2"
+              >
+                {isUpdating ? (
+                  <ActivityIndicator size="small" color="white" />
+                ) : (
+                  <Ionicons name="camera" size={16} color="white" />
+                )}
+              </TouchableOpacity>
+            </View>
+            <Text className="text-xl font-bold text-gray-800">
+              {user.firstName} {user.lastName}
+            </Text>
+            <Text className="text-gray-500 mt-1">
+              {user.emailAddresses[0].emailAddress}
+            </Text>
+          </View>
+
+          {/* Menu Items */}
+          <View className="px-6 gap-2">
+            <MenuItem
+              icon="heart-outline"
+              label="Saved Properties"
+              onPress={() => router.push("/(root)/(tabs)/saved")}
+            />
+            <MenuItem
+              icon="notifications-outline"
+              label="Notifications"
+              onPress={() =>
+                Alert.alert("Coming Soon", "Notifications coming soon!")
+              }
+            />
+            <MenuItem
+              icon="settings-outline"
+              label="Settings"
+              onPress={() =>
+                Alert.alert("Coming Soon", "Settings coming soon!")
+              }
+            />
+            <MenuItem
+              icon="lock-closed-outline"
+              label="Change Password"
+              onPress={() => setShowPasswordForm((prev) => !prev)}
+              enableCloseIcon={showPasswordForm}
+            />
+
+            {showPasswordForm && (
+              <View className="px-6 mt-4">
+                <View className="bg-white border border-slate-100 rounded-3xl p-4 shadow-sm">
+                  <Text className="text-lg font-bold text-slate-900 mb-1">
+                    Update Password
+                  </Text>
+                  <Text className="text-sm text-slate-500 mb-4">
+                    Enter your current password, then choose a new one.
+                  </Text>
+
+                  <TextInput
+                    className="w-full border border-slate-200 rounded-2xl px-4 py-3 mb-3 bg-stone-50 text-slate-800"
+                    placeholder="Current password"
+                    placeholderTextColor="#94A3B8"
+                    value={currentPassword}
+                    onChangeText={setCurrentPassword}
+                    secureTextEntry
+                  />
+                  <TextInput
+                    className="w-full border border-slate-200 rounded-2xl px-4 py-3 mb-3 bg-stone-50 text-slate-800"
+                    placeholder="New password"
+                    placeholderTextColor="#94A3B8"
+                    value={newPassword}
+                    onChangeText={setNewPassword}
+                    secureTextEntry
+                  />
+                  <TextInput
+                    className="w-full border border-slate-200 rounded-2xl px-4 py-3 mb-4 bg-stone-50 text-slate-800"
+                    placeholder="Confirm new password"
+                    placeholderTextColor="#94A3B8"
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    secureTextEntry
+                  />
+
+                  <TouchableOpacity
+                    onPress={handleChangePassword}
+                    disabled={isChangingPassword}
+                    className="bg-emerald-600 rounded-2xl py-4 items-center"
+                  >
+                    {isChangingPassword ? (
+                      <ActivityIndicator color="white" />
+                    ) : (
+                      <Text className="text-white font-bold text-base">
+                        Save Password
+                      </Text>
+                    )}
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      setShowPasswordForm(false);
+                      setCurrentPassword("");
+                      setNewPassword("");
+                      setConfirmPassword("");
+                    }}
+                    className="mt-3 items-center py-2"
+                  >
+                    <Text className="text-slate-600 font-semibold">Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
+            <MenuItem
+              icon="help-circle-outline"
+              label="Help & Support"
+              onPress={() =>
+                Linking.openURL(
+                  "mailto:demoEmail@gmail.com?subject=Help%20%26%20Support%20-%20Nivaas%20App",
+                )
+              }
+            />
+          </View>
+
+          {/* Sign Out */}
+          <View className="px-6 mt-4 mb-8">
+            <TouchableOpacity
+              onPress={handleSignOut}
+              className="flex-row items-center justify-center gap-2 bg-red-50 py-4 rounded-2xl border border-red-100"
+            >
+              <Ionicons name="log-out-outline" size={20} color="#EF4444" />
+              <Text className="text-red-500 font-semibold text-base">
+                Sign Out
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -160,10 +298,12 @@ function MenuItem({
   icon,
   label,
   onPress,
+  enableCloseIcon = false,
 }: {
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
   onPress?: () => void;
+  enableCloseIcon?: boolean;
 }) {
   return (
     <TouchableOpacity
@@ -174,7 +314,11 @@ function MenuItem({
       <Text className="flex-1 text-gray-700 font-medium text-base">
         {label}
       </Text>
-      <Ionicons name="chevron-forward" size={18} color="#D1D5DB" />
+      {enableCloseIcon ? (
+        <Ionicons name="close" size={18} color="#D1D5DB" />
+      ) : (
+        <Ionicons name="chevron-forward" size={18} color="#D1D5DB" />
+      )}
     </TouchableOpacity>
   );
 }

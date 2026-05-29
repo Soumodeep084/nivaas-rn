@@ -20,6 +20,16 @@ export default function HomeScreen() {
   const { user } = useUser();
   const router = useRouter();
 
+  const date = new Date();
+  const hours = date.getHours();
+  let greeting = "Hello";
+  if (hours >= 6 && hours < 12) {
+    greeting = "Good morning";
+  } else if (hours >= 12 && hours < 18) {
+    greeting = "Good afternoon";
+  } else {
+    greeting = "Good evening";
+  }
   const [featured, setFeatured] = useState<Property[]>([]);
   const [recommended, setRecommended] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
@@ -67,7 +77,7 @@ export default function HomeScreen() {
                 resizeMode="contain"
               />
               <View className="items-end">
-                <Text className="text-gray-500 text-xs">Good morning 👋</Text>
+                <Text className="text-gray-500 text-xs">{greeting} 👋</Text>
                 <Text className="text-gray-900 text-base font-bold">
                   {user?.firstName ?? "User"}
                 </Text>
@@ -119,7 +129,10 @@ export default function HomeScreen() {
                   renderItem={({ item }) => <FeaturedCard property={item} />}
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{ paddingHorizontal: 20 }}
+                  contentContainerStyle={{
+                    paddingHorizontal: 20,
+                    paddingVertical: 5,
+                  }}
                 />
               )}
             </View>
