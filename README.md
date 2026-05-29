@@ -62,11 +62,11 @@ Nivaas is a modern real-estate mobile application built with Expo Router and Rea
 
 | Sign Up                              | Sign In                              | Forgot Password                                      | Home Screen                     | Search Screen                       |
 | ------------------------------------ | ------------------------------------ | ---------------------------------------------------- | ------------------------------- | ----------------------------------- |
-| ![Sign up](assets/demo/1-signup.jpg) | ![Sign In](assets/demo/2-signin.jpg) | ![Forgot Password](assets\demo\3-forgotPassword.jpg) | ![Home](assets\demo\4-home.jpg) | ![Search](assets\demo\5-search.jpg) |
+| ![Sign up](assets/demo/1-signup.jpg) | ![Sign In](assets/demo/2-signin.jpg) | ![Forgot Password](/assets/demo/3-forgotPassword.jpg) | ![Home](assets/demo/4-home.jpg) | ![Search](assets/demo/5-search.jpg) |
 
 | Filter Search                             | Property Details                                         | Create Property                     | Saved Properties                   | Profile                                |
 | ----------------------------------------- | -------------------------------------------------------- | ----------------------------------- | ---------------------------------- | -------------------------------------- |
-| ![Filter](assets\demo\6-searchFilter.jpg) | ![Property Details-1](assets\demo\7-propertyDetails.jpg) | ![create](assets\demo\9-create.jpg) | ![Saved](assets/demo/10-saved.jpg) | ![Profile](assets/demo/11-profile.jpg) |
+| ![Filter](assets/demo/6-searchFilter.jpg) | ![Property Details-1](assets/demo/7-propertyDetails.jpg) | ![create](assets/demo/9-create.jpg) | ![Saved](assets/demo/10-saved.jpg) | ![Profile](assets/demo/11-profile.jpg) |
 
 ## Project Structure
 
@@ -113,7 +113,7 @@ assets/
 
 ## Prerequisites
 
-- Node.js 18 or newer
+- Node.js 23 or newer
 - npm
 - An Expo-compatible development environment for Android, iOS, or web
 - Supabase project and Clerk application credentials
