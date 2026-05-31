@@ -5,8 +5,8 @@ import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 import { Platform } from "react-native";
 
 function AndroidTabs() {
-  // const isAdmin = useUserStore((state) => state.isAdmin);
-  const isAdmin = true;
+  const isAdmin = useUserStore((state) => state.isAdmin);
+  // const isAdmin = true;
 
   return (
     <Tabs screenOptions={{ headerShown: false }}>
